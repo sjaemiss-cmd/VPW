@@ -1,0 +1,2718 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>딸깍연구소 | 브랜딩 기획안</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+/* ========== CSS VARIABLES ========== */
+:root {
+  --bg-primary: #0d1117;
+  --bg-secondary: #161b22;
+  --bg-card: #1c2128;
+  --bg-card-hover: #22272e;
+  --bg-elevated: #2d333b;
+  --text-primary: #e6edf3;
+  --text-secondary: #8b949e;
+  --accent-green: #39d353;
+  --accent-yellow: #f0c000;
+  --accent-pink: #f778ba;
+  --accent-blue: #58a6ff;
+  --border: #30363d;
+  --border-hover: #484f58;
+  --glow-green: rgba(57, 211, 83, 0.15);
+  --glow-yellow: rgba(240, 192, 0, 0.1);
+  --glow-pink: rgba(247, 120, 186, 0.1);
+  --font-kr: 'Noto Sans KR', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --max-width: 1200px;
+  --section-gap: 100px;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ========== RESET & BASE ========== */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) var(--bg-primary);
+}
+
+body {
+  font-family: var(--font-kr);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.8;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--border-hover); }
+
+/* ========== UTILITY CLASSES ========== */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.mono { font-family: var(--font-mono); }
+.accent-green { color: var(--accent-green); }
+.accent-yellow { color: var(--accent-yellow); }
+.accent-pink { color: var(--accent-pink); }
+.accent-blue { color: var(--accent-blue); }
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent-green);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-label::before {
+  content: '//';
+  opacity: 0.5;
+}
+
+.section-title {
+  font-family: var(--font-kr);
+  font-weight: 900;
+  font-size: 2.2rem;
+  margin-bottom: 16px;
+  line-height: 1.3;
+}
+
+.section-title .en {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  display: block;
+  margin-top: 4px;
+}
+
+.section-subtitle {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  max-width: 700px;
+  line-height: 1.8;
+  margin-bottom: 40px;
+}
+
+/* ========== CARD COMPONENT ========== */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-green), transparent);
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.card:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+/* ========== CODE BLOCK MOTIF ========== */
+.code-block {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.code-block-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.code-block-header .dots {
+  display: flex;
+  gap: 6px;
+}
+
+.code-block-header .dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.code-block-header .dot:nth-child(1) { background: #ff5f57; }
+.code-block-header .dot:nth-child(2) { background: #febc2e; }
+.code-block-header .dot:nth-child(3) { background: #28c840; }
+
+.code-block-body {
+  padding: 20px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  line-height: 1.9;
+  overflow-x: auto;
+}
+
+.code-keyword { color: var(--accent-pink); }
+.code-string { color: var(--accent-green); }
+.code-comment { color: var(--text-secondary); font-style: italic; }
+.code-function { color: var(--accent-yellow); }
+.code-variable { color: var(--accent-blue); }
+
+/* ========== BACKGROUND PARTICLES ========== */
+#particles-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+/* ========== SIDE NAVIGATION ========== */
+.side-nav {
+  position: fixed;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+  padding: 16px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.side-nav a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  border-radius: 0 8px 8px 0;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.side-nav a .nav-dot {
+  width: 6px;
+  height: 6px;
+  min-width: 6px;
+  border-radius: 50%;
+  background: var(--border);
+  transition: var(--transition);
+}
+
+.side-nav a .nav-text {
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: var(--transition);
+  pointer-events: none;
+}
+
+.side-nav a:hover .nav-text,
+.side-nav a.active .nav-text {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.side-nav a:hover .nav-dot,
+.side-nav a.active .nav-dot {
+  background: var(--accent-green);
+  box-shadow: 0 0 8px var(--accent-green);
+}
+
+.side-nav a.active { color: var(--accent-green); }
+
+.side-nav a:hover {
+  background: rgba(57, 211, 83, 0.05);
+  color: var(--text-primary);
+}
+
+/* ========== MOBILE TOP NAV ========== */
+.top-nav {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(13, 17, 23, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 16px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.top-nav-inner {
+  display: flex;
+  gap: 4px;
+  padding: 8px 0;
+  min-width: max-content;
+}
+
+.top-nav a {
+  padding: 8px 14px;
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  border-radius: 6px;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.top-nav a:hover { background: var(--bg-card); color: var(--text-primary); }
+.top-nav a.active { color: var(--accent-green); background: var(--glow-green); }
+
+/* ========== SCROLL ANIMATION ========== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-in-delay-1 { transition-delay: 0.1s; }
+.fade-in-delay-2 { transition-delay: 0.2s; }
+.fade-in-delay-3 { transition-delay: 0.3s; }
+.fade-in-delay-4 { transition-delay: 0.4s; }
+
+/* ========== HEADER SECTION ========== */
+.header-section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 60px 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.header-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: linear-gradient(to bottom, transparent, var(--bg-primary));
+  pointer-events: none;
+}
+
+.terminal-logo {
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  color: var(--accent-green);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.terminal-logo::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-green), transparent);
+}
+
+.terminal-prompt { color: var(--accent-green); font-weight: 700; }
+
+.terminal-cursor {
+  display: inline-block;
+  width: 10px;
+  height: 20px;
+  background: var(--accent-green);
+  animation: blink 1s infinite;
+  vertical-align: middle;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.channel-name {
+  font-family: var(--font-kr);
+  font-weight: 900;
+  font-size: 4rem;
+  line-height: 1.2;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-green) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.channel-name-en {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  color: var(--accent-green);
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+  font-weight: 500;
+}
+
+.slogan {
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto 48px;
+  line-height: 1.8;
+  font-weight: 400;
+}
+
+.slogan em {
+  font-style: normal;
+  color: var(--accent-yellow);
+}
+
+.header-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+}
+
+.header-meta .meta-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.header-meta .meta-divider {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--border);
+}
+
+.header-meta .meta-highlight { color: var(--accent-green); font-weight: 600; }
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  z-index: 2;
+  animation: float 2s ease-in-out infinite;
+}
+
+.scroll-indicator span {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  letter-spacing: 2px;
+}
+
+.scroll-arrow {
+  width: 20px;
+  height: 20px;
+  border-right: 2px solid var(--accent-green);
+  border-bottom: 2px solid var(--accent-green);
+  transform: rotate(45deg);
+  opacity: 0.6;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(10px); }
+}
+
+/* ========== TYPING ANIMATION ========== */
+.typing-container {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-bottom: 40px;
+  min-height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.typing-text { color: var(--accent-green); }
+
+.typing-cursor-inline {
+  display: inline-block;
+  width: 8px;
+  height: 18px;
+  background: var(--accent-green);
+  animation: blink 0.8s infinite;
+  vertical-align: middle;
+}
+
+/* ========== MAIN CONTENT ========== */
+main {
+  position: relative;
+  z-index: 1;
+}
+
+.section {
+  padding-top: var(--section-gap);
+  padding-bottom: 20px;
+}
+
+/* ========== PLAN TABLE ========== */
+.plan-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.plan-table tr { transition: var(--transition); }
+.plan-table tr:hover { background: var(--bg-card-hover); }
+
+.plan-table td {
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  font-size: 0.92rem;
+  line-height: 1.8;
+}
+
+.plan-table tr:last-child td { border-bottom: none; }
+
+.plan-table td:first-child {
+  width: 160px;
+  font-weight: 700;
+  color: var(--accent-green);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.5px;
+  background: rgba(57, 211, 83, 0.03);
+  border-right: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+/* ========== CONCEPT CARDS ========== */
+.concept-grid {
+  display: grid;
+  gap: 24px;
+}
+
+.concept-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.concept-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  transition: var(--transition);
+}
+
+.concept-card:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.concept-card.green::before { background: var(--accent-green); }
+.concept-card.yellow::before { background: var(--accent-yellow); }
+.concept-card.pink::before { background: var(--accent-pink); }
+.concept-card.blue::before { background: var(--accent-blue); }
+
+.concept-card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.concept-card h3 .tag {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+.concept-card.green h3 .tag { background: var(--glow-green); color: var(--accent-green); }
+.concept-card.yellow h3 .tag { background: var(--glow-yellow); color: var(--accent-yellow); }
+.concept-card.pink h3 .tag { background: var(--glow-pink); color: var(--accent-pink); }
+.concept-card.blue h3 .tag { background: rgba(88,166,255,0.1); color: var(--accent-blue); }
+
+.concept-card p {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.9;
+}
+
+.concept-card strong { color: var(--text-primary); }
+
+.concept-card .highlight-box {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px 20px;
+  margin-top: 16px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--accent-green);
+}
+
+/* ========== FORMAT CARDS ========== */
+.format-section {
+  display: grid;
+  gap: 32px;
+}
+
+.format-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.format-card:hover {
+  border-color: var(--border-hover);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.format-card-header {
+  padding: 24px 32px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(57, 211, 83, 0.02);
+}
+
+.format-number {
+  font-family: var(--font-mono);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent-green);
+  opacity: 0.6;
+  line-height: 1;
+}
+
+.format-card-header h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.format-card-header h3 span {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+  display: block;
+  margin-top: 4px;
+}
+
+.format-card-body {
+  padding: 28px 32px;
+}
+
+.format-card-body ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.format-card-body ul li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+.format-card-body ul li::before {
+  content: '>';
+  font-family: var(--font-mono);
+  color: var(--accent-green);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.format-card-body ul li strong { color: var(--text-primary); }
+
+/* ========== COLOR SWATCH ========== */
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.color-swatch {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.color-swatch:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.color-swatch .swatch-color {
+  height: 80px;
+  width: 100%;
+}
+
+.color-swatch .swatch-info {
+  padding: 12px 16px;
+}
+
+.color-swatch .swatch-name {
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.color-swatch .swatch-hex {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+}
+
+.color-swatch .swatch-usage {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  margin-top: 4px;
+  line-height: 1.5;
+}
+
+/* ========== RATIO BAR ========== */
+.ratio-bar {
+  display: flex;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  margin: 24px 0;
+}
+
+.ratio-bar .ratio-segment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.ratio-bar .ratio-segment:hover { opacity: 0.85; }
+
+/* ========== TYPOGRAPHY DEMO ========== */
+.typo-demo {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+  margin-bottom: 16px;
+}
+
+.typo-demo .typo-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--accent-green);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.typo-demo .typo-spec {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  margin-top: 8px;
+}
+
+/* ========== LOGO CARDS ========== */
+.logo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.logo-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  text-align: center;
+  transition: var(--transition);
+}
+
+.logo-card:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.logo-card .logo-type {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--accent-green);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.logo-card .logo-preview {
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 32px 20px;
+  margin-bottom: 16px;
+  font-family: var(--font-mono);
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.logo-card h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.logo-card p {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ========== POSITIONING MAP ========== */
+.positioning-map {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 40px;
+  position: relative;
+  min-height: 400px;
+  margin-bottom: 32px;
+}
+
+.map-axes {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  right: 40px;
+  bottom: 40px;
+}
+
+.map-axis-x {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--border);
+}
+
+.map-axis-y {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--border);
+}
+
+.map-label {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  letter-spacing: 1px;
+}
+
+.map-label.top { top: 0; left: 50%; transform: translateX(-50%); }
+.map-label.bottom { bottom: 0; left: 50%; transform: translateX(-50%); }
+.map-label.left { left: 0; top: 50%; transform: translateY(-50%); }
+.map-label.right { right: 0; top: 50%; transform: translateY(-50%); }
+
+.map-point {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  transform: translate(-50%, -50%);
+}
+
+.map-point .point-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--text-secondary);
+}
+
+.map-point .point-label {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.map-point.highlight .point-dot {
+  width: 16px;
+  height: 16px;
+  background: var(--accent-green);
+  box-shadow: 0 0 16px rgba(57, 211, 83, 0.5);
+  animation: pulse-dot 2s infinite;
+}
+
+.map-point.highlight .point-label {
+  color: var(--accent-green);
+  font-weight: 700;
+  font-size: 0.82rem;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.7; }
+}
+
+/* ========== CHECKLIST ========== */
+.checklist {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.checklist li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  padding: 12px 16px;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  transition: var(--transition);
+}
+
+.checklist li:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-card-hover);
+}
+
+.checklist .check-box {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--border);
+  border-radius: 4px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  color: transparent;
+  transition: var(--transition);
+}
+
+.checklist li:hover .check-box {
+  border-color: var(--accent-green);
+  color: var(--accent-green);
+}
+
+/* ========== TONE TABLE ========== */
+.tone-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.tone-table thead th {
+  padding: 14px 16px;
+  background: var(--bg-secondary);
+  border-bottom: 2px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent-green);
+  letter-spacing: 1px;
+  text-align: left;
+}
+
+.tone-table tbody tr { transition: var(--transition); }
+.tone-table tbody tr:hover { background: var(--bg-card-hover); }
+
+.tone-table tbody td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.85rem;
+  vertical-align: top;
+  line-height: 1.7;
+}
+
+.tone-table tbody tr:last-child td { border-bottom: none; }
+
+.tone-table td:first-child {
+  font-weight: 600;
+  white-space: nowrap;
+  width: 140px;
+}
+
+/* ========== DIFF TABLE (DO/DON'T) ========== */
+.dodont-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.dodont-col {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.dodont-col .dodont-header {
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.dodont-col.do .dodont-header { color: var(--accent-green); background: rgba(57, 211, 83, 0.05); }
+.dodont-col.dont .dodont-header { color: var(--accent-pink); background: rgba(247, 120, 186, 0.05); }
+
+.dodont-col ul {
+  list-style: none;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dodont-col ul li {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  padding-left: 20px;
+  position: relative;
+}
+
+.dodont-col.do ul li::before {
+  content: 'O';
+  position: absolute;
+  left: 0;
+  color: var(--accent-green);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.dodont-col.dont ul li::before {
+  content: 'X';
+  position: absolute;
+  left: 0;
+  color: var(--accent-pink);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+/* ========== THUMBNAIL TEMPLATE PREVIEW ========== */
+.thumb-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.thumb-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.thumb-card:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.thumb-preview {
+  aspect-ratio: 16/9;
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-secondary);
+  position: relative;
+}
+
+.thumb-card .thumb-info {
+  padding: 20px;
+}
+
+.thumb-card .thumb-info h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.thumb-card .thumb-info p {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ========== QUOTE BOX ========== */
+.quote-box {
+  background: var(--bg-card);
+  border: 1px solid var(--accent-green);
+  border-radius: var(--radius);
+  padding: 32px;
+  text-align: center;
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.8;
+  position: relative;
+  box-shadow: 0 0 30px var(--glow-green);
+  margin-top: 32px;
+}
+
+.quote-box::before {
+  content: '\201C';
+  position: absolute;
+  top: 8px;
+  left: 20px;
+  font-size: 3rem;
+  color: var(--accent-green);
+  opacity: 0.3;
+  font-family: Georgia, serif;
+}
+
+.quote-box::after {
+  content: '\201D';
+  position: absolute;
+  bottom: -8px;
+  right: 20px;
+  font-size: 3rem;
+  color: var(--accent-green);
+  opacity: 0.3;
+  font-family: Georgia, serif;
+}
+
+/* ========== DIFF TABLE ========== */
+.diff-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.diff-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  transition: var(--transition);
+}
+
+.diff-card:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.diff-card .diff-num {
+  font-family: var(--font-mono);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--accent-green);
+  opacity: 0.3;
+  margin-bottom: 8px;
+}
+
+.diff-card h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.diff-card p {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ========== PERSONALITY TABLE ========== */
+.personality-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.personality-item {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 20px;
+  transition: var(--transition);
+}
+
+.personality-item:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-card-hover);
+}
+
+.personality-item .pi-title {
+  font-weight: 700;
+  font-size: 0.92rem;
+  margin-bottom: 6px;
+}
+
+.personality-item .pi-desc {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.personality-item .pi-example {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--accent-green);
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+}
+
+/* ========== ASSET SPEC CARD ========== */
+.asset-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.asset-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.asset-card:hover {
+  border-color: var(--border-hover);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.asset-card-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(57, 211, 83, 0.02);
+}
+
+.asset-card-header .asset-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--accent-green);
+  letter-spacing: 3px;
+  margin-bottom: 4px;
+}
+
+.asset-card-header h4 {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.asset-card-body {
+  padding: 20px 24px;
+}
+
+.asset-card-body ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.asset-card-body ul li {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.asset-card-body ul li::before {
+  content: '>';
+  font-family: var(--font-mono);
+  color: var(--accent-green);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* ========== FOOTER ========== */
+.footer {
+  padding: 80px 0 40px;
+  border-top: 1px solid var(--border);
+  margin-top: var(--section-gap);
+}
+
+.footer-content {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+
+.footer-info {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+.footer-copy {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  opacity: 0.6;
+}
+
+.doc-info {
+  margin-bottom: 48px;
+}
+
+.doc-info h3 {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent-green);
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 1024px) {
+  .side-nav { display: none; }
+  .top-nav { display: block; }
+  main, .header-section { padding-top: 56px; }
+
+  .diff-grid,
+  .dodont-grid,
+  .asset-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .logo-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .thumb-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .color-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  :root { --section-gap: 72px; }
+
+  .channel-name { font-size: 2.5rem; }
+  .channel-name-en { font-size: 0.85rem; letter-spacing: 4px; }
+  .slogan { font-size: 1rem; }
+  .section-title { font-size: 1.7rem; }
+
+  .plan-table td:first-child { width: 100px; font-size: 0.72rem; }
+  .plan-table td { padding: 12px 14px; font-size: 0.82rem; }
+
+  .personality-grid,
+  .diff-grid,
+  .dodont-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .positioning-map { padding: 24px; min-height: 300px; }
+
+  .footer-bottom { flex-direction: column; text-align: center; }
+  .card { padding: 24px; }
+}
+
+@media (max-width: 480px) {
+  html { font-size: 14px; }
+  .channel-name { font-size: 2rem; }
+  .container { padding: 0 16px; }
+  .terminal-logo { font-size: 0.9rem; padding: 8px 16px; }
+}
+
+/* ========== PRINT STYLES ========== */
+@media print {
+  * {
+    color: #000 !important;
+    background: #fff !important;
+    box-shadow: none !important;
+    border-color: #ccc !important;
+  }
+  body { font-size: 11pt; line-height: 1.5; }
+  #particles-canvas, .side-nav, .top-nav, .scroll-indicator,
+  .terminal-cursor, .typing-cursor-inline { display: none !important; }
+  .header-section { min-height: auto; padding: 40px 0; page-break-after: always; }
+  .channel-name { -webkit-text-fill-color: #000; background: none; font-size: 28pt; }
+  .section { padding-top: 24px; page-break-inside: avoid; }
+  .fade-in { opacity: 1 !important; transform: none !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- Particle Canvas -->
+<canvas id="particles-canvas"></canvas>
+
+<!-- Side Navigation -->
+<nav class="side-nav" id="sideNav" aria-label="Section navigation">
+  <a href="#header" class="active" data-section="header"><span class="nav-dot"></span><span class="nav-text">HOME</span></a>
+  <a href="#section1" data-section="section1"><span class="nav-dot"></span><span class="nav-text">01 ESSENCE</span></a>
+  <a href="#section2" data-section="section2"><span class="nav-dot"></span><span class="nav-text">02 VALUES</span></a>
+  <a href="#section3" data-section="section3"><span class="nav-dot"></span><span class="nav-text">03 VOICE</span></a>
+  <a href="#section4" data-section="section4"><span class="nav-dot"></span><span class="nav-text">04 VISUAL</span></a>
+  <a href="#section5" data-section="section5"><span class="nav-dot"></span><span class="nav-text">05 LOGO</span></a>
+  <a href="#section6" data-section="section6"><span class="nav-dot"></span><span class="nav-text">06 ASSETS</span></a>
+  <a href="#section7" data-section="section7"><span class="nav-dot"></span><span class="nav-text">07 POSITION</span></a>
+  <a href="#section8" data-section="section8"><span class="nav-dot"></span><span class="nav-text">08 CHECKLIST</span></a>
+</nav>
+
+<!-- Top Navigation (Mobile) -->
+<nav class="top-nav" id="topNav" aria-label="Section navigation mobile">
+  <div class="top-nav-inner">
+    <a href="#header" class="active">HOME</a>
+    <a href="#section1">에센스</a>
+    <a href="#section2">가치</a>
+    <a href="#section3">보이스</a>
+    <a href="#section4">비주얼</a>
+    <a href="#section5">로고</a>
+    <a href="#section6">에셋</a>
+    <a href="#section7">포지셔닝</a>
+    <a href="#section8">체크리스트</a>
+  </div>
+</nav>
+
+<!-- ==================== HEADER ==================== -->
+<header class="header-section" id="header">
+  <div class="terminal-logo fade-in">
+    <span class="terminal-prompt">$_</span>
+    <span>brand-identity-guide</span>
+    <span class="terminal-cursor"></span>
+  </div>
+
+  <h1 class="channel-name fade-in fade-in-delay-1">딸깍연구소</h1>
+  <p class="channel-name-en fade-in fade-in-delay-2">Click Lab</p>
+
+  <div class="typing-container fade-in fade-in-delay-3">
+    <span class="typing-text" id="typingText"></span>
+    <span class="typing-cursor-inline"></span>
+  </div>
+
+  <p class="slogan fade-in fade-in-delay-3">
+    <em>브랜드 아이덴티티 가이드라인</em> v1.0
+  </p>
+
+  <div class="header-meta fade-in fade-in-delay-4">
+    <div class="meta-line">
+      <span>세종대학교 미디어커뮤니케이션학과</span>
+    </div>
+    <div class="meta-line">
+      <span>영상제작워크샵(ft. 1인미디어종합설계)</span>
+      <span class="meta-divider"></span>
+      <span>2026년 1학기</span>
+    </div>
+    <div class="meta-line" style="margin-top: 8px;">
+      <span class="meta-highlight">홍재영 (JAY)</span>
+      <span class="meta-divider"></span>
+      <span>2026년 3월</span>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <span>SCROLL</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</header>
+
+<!-- ==================== MAIN CONTENT ==================== -->
+<main>
+
+  <!-- ========== SECTION 1: BRAND ESSENCE ========== -->
+  <section class="section" id="section1">
+    <div class="container">
+      <div class="fade-in">
+        <p class="section-label">Section 01</p>
+        <h2 class="section-title">브랜드 에센스 <span class="en">Brand Essence</span></h2>
+        <p class="section-subtitle">딸깍연구소의 핵심 정체성을 정의하는 브랜드 전략 요소. 모든 콘텐츠와 커뮤니케이션의 기준점입니다.</p>
+      </div>
+
+      <div class="code-block fade-in fade-in-delay-1">
+        <div class="code-block-header">
+          <div class="dots">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+          <span>brand_essence.json</span>
+        </div>
+        <div class="code-block-body" style="padding:0;">
+          <table class="plan-table">
+            <tbody>
+              <tr>
+                <td>핵심 컨셉</td>
+                <td><strong style="color:var(--accent-green);">"기술의 민주화를 유머로 증명한다."</strong><br><span style="color:var(--text-secondary); font-size:0.85rem;">AI 바이브코딩이라는 새로운 기술 패러다임을 '엉뚱한 실험'으로 풀어내는 채널. 쓸모없는 것을 진지하게 만드는 과정 자체가 기술 민주화의 가장 강력한 증거.</span></td>
+              </tr>
+              <tr>
+                <td>미션</td>
+                <td><strong>"누구나 딸깍 한 번이면 아이디어를 현실로 만들 수 있다는 것을, 가장 쓸데없는 앱으로 증명합니다."</strong></td>
+              </tr>
+              <tr>
+                <td>비전</td>
+                <td><strong>"바이브코딩 예능의 대명사. '하찮은 문제'에서 시작해 누구나 만드는 사람(Creator)이 되는 세상."</strong></td>
+              </tr>
+              <tr>
+                <td>약속</td>
+                <td>"딸깍연구소를 보면, <span style="color:var(--accent-yellow);">웃기면서도</span> '나도 만들어볼까?'라는 <span style="color:var(--accent-yellow);">생각이 들게</span> 합니다."</td>
+              </tr>
+              <tr>
+                <td>퍼스낼리티</td>
+                <td><strong>Jester(광대) &times; Creator(창조자)</strong> &mdash; 유머와 엉뚱함으로 시청자를 끌어들이면서 실제로 작동하는 결과물을 만들어내는 이중 구조</td>
+              </tr>
+              <tr>
+                <td>슬로건</td>
+                <td><strong style="color:var(--accent-green);">"딸깍 한 번이면 앱이 뚝딱, 코딩은 AI가 합니다"</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 2: VALUES & PERSONALITY ========== -->
+  <section class="section" id="section2">
+    <div class="container">
+      <div class="fade-in">
+        <p class="section-label">Section 02</p>
+        <h2 class="section-title">브랜드 가치 & 퍼스낼리티 <span class="en">Values & Personality</span></h2>
+        <p class="section-subtitle">딸깍연구소가 지키는 4가지 핵심 가치와, 채널의 캐릭터를 정의하는 퍼스낼리티 특성.</p>
+      </div>
+
+      <div class="concept-grid">
+        <div class="concept-card green fade-in fade-in-delay-1">
+          <h3>엉뚱함 <span class="tag">Absurdity</span></h3>
+          <p>일상의 <strong>하찮은 문제를 진지하게 다루는 유쾌한 반전</strong>. 매 에피소드 "이걸 앱으로 만들면 되는 거 아닌가?"로 시작한다. 쓸데없는 것을 대단한 프로젝트처럼 진지하게 접근하는 태도가 핵심.</p>
+          <div class="highlight-box">$ 인류 최대의 과제를 해결하겠습니다: 점심 메뉴 고르기</div>
+        </div>
+
+        <div class="concept-card yellow fade-in fade-in-delay-2">
+          <h3>투명함 <span class="tag">Transparency</span></h3>
+          <p><strong>시행착오, 에러, 실패를 숨기지 않는 정직한 과정 공개</strong>. 바이브코딩 과정을 편집 없이 보여주고, 에러도 콘텐츠로 활용한다. 완벽하지 않은 과정을 그대로 보여주는 인간적 매력.</p>
+          <div class="highlight-box">$ 에러 5번 나서 멘탈 나갈 뻔했는데요...</div>
+        </div>
+
+        <div class="concept-card pink fade-in fade-in-delay-3">
+          <h3>접근성 <span class="tag">Accessibility</span></h3>
+          <p><strong>기술을 모르는 사람도 이해하고 즐길 수 있는 쉬운 언어</strong>. 전문 용어 대신 일상 언어를 사용하고, 시청자 누구나 따라할 수 있는 구조로 설계한다.</p>
+          <div class="highlight-box">$ AI한테 '이거 만들어줘' 하면 코드가 쫙 나와요</div>
+        </div>
+
+        <div class="concept-card blue fade-in fade-in-delay-4">
+          <h3>실행력 <span class="tag">Execution</span></h3>
+          <p>말로만 끝나지 않고 <strong>매 에피소드 실제 작동하는 결과물을 도출</strong>한다. 완성된 앱의 QR코드를 공유하고, 실사용 시연으로 증명한다.</p>
+          <div class="highlight-box">$ BUILD SUCCESS &mdash; QR코드로 직접 체험하세요</div>
+        </div>
+      </div>
+
+      <!-- Personality Traits -->
+      <div class="fade-in" style="margin-top:48px;">
+        <h3 style="font-size:1.2rem; font-weight:700; margin-bottom:8px;">퍼스낼리티 특성</h3>
+        <p style="color:var(--text-secondary); font-size:0.92rem; margin-bottom:16px;">문화원형: <strong style="color:var(--text-primary);">Jester(광대) &times; Creator(창조자)</strong>의 교차점</p>
+      </div>
+
+      <div class="personality-grid fade-in">
+        <div class="personality-item">
+          <div class="pi-title">무심한 듯 진지한</div>
+          <div class="pi-desc">쓸데없는 것을 대단한 프로젝트처럼 진지하게 접근</div>
+          <div class="pi-example">"이건 인류에게 꼭 필요한 앱입니다" (진지한 얼굴로)</div>
+        </div>
+        <div class="personality-item">
+          <div class="pi-title">호기심 가득한</div>
+          <div class="pi-desc">"이거 되나?" 하는 순수한 실험 정신</div>
+          <div class="pi-example">매번 새로운 하찮은 문제에 진심으로 몰입</div>
+        </div>
+        <div class="personality-item">
+          <div class="pi-title">솔직하고 허술한</div>
+          <div class="pi-desc">완벽하지 않은 과정을 그대로 보여주는 인간적 매력</div>
+          <div class="pi-example">에러 앞에서 당황하는 리액션, 꾸미지 않은 반응</div>
+        </div>
+        <div class="personality-item">
+          <div class="pi-title">은근히 똑똑한</div>
+          <div class="pi-desc">유머 속에 실제로 작동하는 기술과 인사이트가 숨어 있음</div>
+          <div class="pi-example">웃기지만 결국 앱은 진짜 완성됨</div>
+        </div>
+      </div>
+
+      <div class="quote-box fade-in" style="margin-top:32px;">
+        친구 중에 제일 <span class="accent-green">엉뚱한데</span>, 막상 시키면 <span class="accent-yellow">진짜 해오는</span> 그 친구.
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 3: VOICE & TONE ========== -->
+  <section class="section" id="section3">
+    <div class="container">
+      <div class="fade-in">
+        <p class="section-label">Section 03</p>
+        <h2 class="section-title">보이스 & 톤 <span class="en">Brand Voice & Tone</span></h2>
+        <p class="section-subtitle">딸깍연구소의 말하기 방식을 정의하는 세 가지 축과 상황별 톤 변주 가이드.</p>
+      </div>
+
+      <!-- 3 Voice Axes -->
+      <div class="format-section">
+        <div class="format-card fade-in fade-in-delay-1">
+          <div class="format-card-header">
+            <div class="format-number">01</div>
+            <h3>캐주얼하되 무례하지 않은 <span>Casual, Not Rude</span></h3>
+          </div>
+          <div class="format-card-body">
+            <ul>
+              <li>친구에게 말하듯 <strong>편한 반말 톤</strong></li>
+              <li>시청자를 무시하거나 비하하는 표현은 <strong>절대 사용하지 않음</strong></li>
+              <li>기본 호칭: <strong>"여러분"</strong> (격식 없이 자연스럽게)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="format-card fade-in fade-in-delay-2">
+          <div class="format-card-header">
+            <div class="format-number">02</div>
+            <h3>엉뚱하되 무지하지 않은 <span>Absurd, Not Ignorant</span></h3>
+          </div>
+          <div class="format-card-body">
+            <ul>
+              <li>하찮은 소재를 다루지만 <strong>기술적 내용은 정확하게</strong> 전달</li>
+              <li>"몰라서 웃기는 것"이 아니라 <strong>"알면서도 일부러 엉뚱하게 하는 것"</strong></li>
+              <li>AI, 코딩 관련 정보는 틀리지 않도록 <strong>팩트체크 필수</strong></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="format-card fade-in fade-in-delay-3">
+          <div class="format-card-header">
+            <div class="format-number">03</div>
+            <h3>자조적이되 비관적이지 않은 <span>Self-deprecating, Not Pessimistic</span></h3>
+          </div>
+          <div class="format-card-body">
+            <ul>
+              <li>"코딩 1도 모르는 제가" 같은 <strong>자조적 유머</strong> 사용</li>
+              <li>결론은 항상 긍정적: <strong>"근데 이거 진짜 됐잖아요?"</strong></li>
+              <li><strong>실패도 즐기는 태도</strong>, 과정 자체를 콘텐츠로 전환</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tone Variations -->
+      <div class="fade-in" style="margin-top:48px;">
+        <h3 style="font-size:1.2rem; font-weight:700; margin-bottom:20px;">톤 변주 <span class="mono" style="font-size:0.8rem; color:var(--text-secondary); font-weight:400;">Tone Variations</span></h3>
+      </div>
+
+      <div class="code-block fade-in">
+        <div class="code-block-header">
+          <div class="dots">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+          <span>tone_variations.config</span>
+        </div>
+        <div class="code-block-body" style="padding:0;">
+          <table class="tone-table">
+            <thead>
+              <tr>
+                <th>SITUATION</th>
+                <th>TONE</th>
+                <th>EXAMPLE</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="color:var(--accent-green);">에피소드 인트로</td>
+                <td>진지한 척 장난스러운</td>
+                <td>"오늘의 하찮은 문제... 이건 진짜 심각합니다."</td>
+              </tr>
+              <tr>
+                <td style="color:var(--accent-yellow);">바이브코딩 과정</td>
+                <td>호기심 + 약간 흥분</td>
+                <td>"어 이거 되나? 잠깐 이거 진짜 되는 거야?"</td>
+              </tr>
+              <tr>
+                <td style="color:var(--accent-pink);">에러/시행착오</td>
+                <td>자조적 + 코믹</td>
+                <td>"아 Claude 왜 이래... 나한테 왜 이러는 거야"</td>
+              </tr>
+              <tr>
+                <td style="color:var(--accent-green);">결과물 완성</td>
+                <td>진심 감탄 + 허탈</td>
+                <td>"된다! 야 이거 진짜--- 근데 이걸 누가 쓰지?"</td>
+              </tr>
+              <tr>
+                <td style="color:var(--accent-yellow);">커뮤니티 소통</td>
+                <td>친근한 + 참여 유도</td>
+                <td>"다음에 만들 하찮은 앱, 여러분이 정해주세요"</td>
+              </tr>
+              <tr>
+                <td style="color:var(--accent-blue);">채널 공식 소개</td>
+                <td>위트 있는 자기소개</td>
+                <td>"코딩 모르는 대학생이 AI로 쓸데없는 앱 만드는 채널"</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Signature Language -->
+      <div class="fade-in" style="margin-top:48px;">
+        <h3 style="font-size:1.2rem; font-weight:700; margin-bottom:20px;">시그니처 언어 <span class="mono" style="font-size:0.8rem; color:var(--text-secondary); font-weight:400;">Signature Language</span></h3>
+      </div>
+
+      <div class="code-block fade-in">
+        <div class="code-block-header">
+          <div class="dots">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+          <span>signature_phrases.json</span>
+        </div>
+        <div class="code-block-body" style="padding:0;">
+          <table class="tone-table">
+            <thead>
+              <tr>
+                <th>PURPOSE</th>
+                <th>SIGNATURE PHRASE</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="color:var(--accent-green);">에피소드 트리거</td>
+                <td><strong>"이걸 앱으로 만들면 되는 거 아닌가?"</strong></td>
+              </tr>
+              <tr>
+                <td style="color:var(--accent-yellow);">바이브코딩 시작</td>
+                <td><strong>"대딸깍의 시대, 제가 해결해보겠습니다"</strong></td>
+              </tr>
+              <tr>
+                <td style="color:var(--accent-pink);">에피소드 클로징</td>
+                <td><strong>"다음 하찮은 문제에서 만나요"</strong></td>
+              </tr>
+              <tr>
+                <td style="color:var(--accent-blue);">인트로 터미널</td>
+                <td><span class="mono" style="color:var(--accent-green);">$ 오늘의 하찮은 문제:</span></td>
+              </tr>
+              <tr>
+                <td style="color:var(--accent-yellow);">쓸모 판정</td>
+                <td><strong>"쓸모 판정: X점 / 5점"</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- DO & DON'T -->
+      <div class="fade-in" style="margin-top:48px;">
+        <h3 style="font-size:1.2rem; font-weight:700; margin-bottom:20px;">DO & DON'T</h3>
+      </div>
+
+      <div class="dodont-grid fade-in">
+        <div class="dodont-col do">
+          <div class="dodont-header">DO &mdash; 이렇게 합니다</div>
+          <ul>
+            <li>일상 언어로 기술을 설명한다</li>
+            <li>자조적 유머를 사용한다</li>
+            <li>시행착오를 솔직하게 보여준다</li>
+            <li>하찮은 것을 과대포장한다 (의도적 아이러니)</li>
+            <li>시청자를 참여시킨다</li>
+          </ul>
+        </div>
+        <div class="dodont-col dont">
+          <div class="dodont-header">DON'T &mdash; 이렇게 하지 않습니다</div>
+          <ul>
+            <li>전문 용어를 설명 없이 사용하지 않는다</li>
+            <li>기술을 과시하거나 시청자를 깔보지 않는다</li>
+            <li>다른 채널이나 크리에이터를 비하하지 않는다</li>
+            <li>특정 성별/연령/직업군을 비하하는 유머 금지</li>
+            <li>결과물의 완성도를 과장하지 않는다</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 4: VISUAL IDENTITY ========== -->
+  <section class="section" id="section4">
+    <div class="container">
+      <div class="fade-in">
+        <p class="section-label">Section 04</p>
+        <h2 class="section-title">비주얼 아이덴티티 <span class="en">Visual Identity</span></h2>
+        <p class="section-subtitle">딸깍연구소의 비주얼은 "에디토리얼 터미널" 이라는 하나의 키워드로 수렴한다. 매거진의 세련됨과 코드 에디터의 기술적 감성이 만나는 지점.</p>
+      </div>
+
+      <!-- 4 Visual Principles -->
+      <div class="fade-in" style="margin-bottom:32px;">
+        <h3 style="font-size:1.2rem; font-weight:700; margin-bottom:20px;">비주얼 원칙 <span class="mono" style="font-size:0.8rem; color:var(--text-secondary); font-weight:400;">Design Principles</span></h3>
+      </div>
+
+      <div class="personality-grid fade-in" style="margin-top:0;">
+        <div class="personality-item" style="border-left:3px solid var(--accent-green);">
+          <div class="pi-title">다크 퍼스트 <span class="mono" style="font-size:0.72rem; color:var(--text-secondary);">Dark First</span></div>
+          <div class="pi-desc">모든 에셋은 다크 배경을 기본으로 설계한다</div>
+        </div>
+        <div class="personality-item" style="border-left:3px solid var(--accent-yellow);">
+          <div class="pi-title">코드 모티프 <span class="mono" style="font-size:0.72rem; color:var(--text-secondary);">Code Motif</span></div>
+          <div class="pi-desc">터미널, 코드 에디터의 UI 요소를 그래픽 모티프로 활용</div>
+        </div>
+        <div class="personality-item" style="border-left:3px solid var(--accent-pink);">
+          <div class="pi-title">네온 액센트 <span class="mono" style="font-size:0.72rem; color:var(--text-secondary);">Neon Accent</span></div>
+          <div class="pi-desc">어두운 배경 위에 네온 그린/옐로우가 에너지와 생동감 부여</div>
+        </div>
+        <div class="personality-item" style="border-left:3px solid var(--accent-blue);">
+          <div class="pi-title">정보 위계 <span class="mono" style="font-size:0.72rem; color:var(--text-secondary);">Information Hierarchy</span></div>
+          <div class="pi-desc">복잡한 정보도 명확한 위계를 통해 직관적으로 전달</div>
+        </div>
+      </div>
+
+      <!-- Color System -->
+      <div class="fade-in" style="margin-top:48px;">
+        <h3 style="font-size:1.2rem; font-weight:700; margin-bottom:20px;">컬러 시스템 <span class="mono" style="font-size:0.8rem; color:var(--text-secondary); font-weight:400;">Color System</span></h3>
+      </div>
+
+      <div class="fade-in" style="margin-bottom:24px;">
+        <h4 style="font-size:0.92rem; font-weight:600; margin-bottom:16px; color:var(--text-secondary);">배경 컬러</h4>
+      </div>
+
+      <div class="color-grid fade-in" style="margin-bottom:32px;">
+        <div class="color-swatch">
+          <div class="swatch-color" style="background:#0d1117;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Primary</div>
+            <div class="swatch-hex">#0d1117</div>
+            <div class="swatch-usage">전체 배경</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-color" style="background:#161b22;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Secondary</div>
+            <div class="swatch-hex">#161b22</div>
+            <div class="swatch-usage">카드/섹션 배경</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-color" style="background:#1c2128;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Card</div>
+            <div class="swatch-hex">#1c2128</div>
+            <div class="swatch-usage">카드 내부</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-color" style="background:#22272e;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Card Hover</div>
+            <div class="swatch-hex">#22272e</div>
+            <div class="swatch-usage">호버 상태</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-color" style="background:#2d333b;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Elevated</div>
+            <div class="swatch-hex">#2d333b</div>
+            <div class="swatch-usage">모달, 팝업</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fade-in" style="margin-bottom:24px;">
+        <h4 style="font-size:0.92rem; font-weight:600; margin-bottom:16px; color:var(--text-secondary);">액센트 컬러</h4>
+      </div>
+
+      <div class="color-grid fade-in" style="margin-bottom:32px;">
+        <div class="color-swatch">
+          <div class="swatch-color" style="background:#39d353;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name" style="color:#39d353;">Neon Green</div>
+            <div class="swatch-hex">#39d353</div>
+            <div class="swatch-usage">메인 액센트, CTA, 성공</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-color" style="background:#f0c000;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name" style="color:#f0c000;">Yellow</div>
+            <div class="swatch-hex">#f0c000</div>
+            <div class="swatch-usage">아이디어, 경고, 보조 강조</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-color" style="background:#f778ba;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name" style="color:#f778ba;">Pink</div>
+            <div class="swatch-hex">#f778ba</div>
+            <div class="swatch-usage">에러 강조, 코드 키워드</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-color" style="background:#58a6ff;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name" style="color:#58a6ff;">Blue</div>
+            <div class="swatch-hex">#58a6ff</div>
+            <div class="swatch-usage">링크, 정보 표시</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 70-20-10 Ratio Bar -->
+      <div class="fade-in" style="margin-bottom:16px;">
+        <h4 style="font-size:0.92rem; font-weight:600; margin-bottom:8px; color:var(--text-secondary);">컬러 비율 원칙 (70-20-10 Rule)</h4>
+      </div>
+
+      <div class="ratio-bar fade-in">
+        <div class="ratio-segment" style="flex:7; background:#0d1117; color:#8b949e;">70% &mdash; 다크 배경</div>
+        <div class="ratio-segment" style="flex:2; background:#e6edf3; color:#0d1117;">20% &mdash; 텍스트</div>
+        <div class="ratio-segment" style="flex:1; background:#39d353; color:#0d1117;">10%</div>
+      </div>
+
+      <!-- Typography -->
+      <div class="fade-in" style="margin-top:48px;">
+        <h3 style="font-size:1.2rem; font-weight:700; margin-bottom:20px;">타이포그래피 <span class="mono" style="font-size:0.8rem; color:var(--text-secondary); font-weight:400;">Typography</span></h3>
+      </div>
+
+      <div class="typo-demo fade-in">
+        <div class="typo-label">LEVEL 1 &mdash; Display</div>
+        <div style="font-family:var(--font-kr); font-weight:900; font-size:2.5rem; line-height:1.2;">점심 메뉴 골라주는 앱</div>
+        <div class="typo-spec">Noto Sans KR Black (900) / 40~64px / 행간 1.2</div>
+      </div>
+
+      <div class="typo-demo fade-in">
+        <div class="typo-label">LEVEL 2 &mdash; Heading</div>
+        <div style="font-family:var(--font-kr); font-weight:700; font-size:1.8rem; line-height:1.3;">오늘의 하찮은 문제</div>
+        <div class="typo-spec">Noto Sans KR Bold (700) / 28~36px / 행간 1.3</div>
+      </div>
+
+      <div class="typo-demo fade-in">
+        <div class="typo-label">LEVEL M &mdash; Monospace</div>
+        <div style="font-family:var(--font-mono); font-size:1.1rem; line-height:1.6; color:var(--accent-green);">$ 오늘의 하찮은 문제: "점심 뭐 먹지"</div>
+        <div class="typo-spec">JetBrains Mono Regular/Bold / 코드, 터미널, 기술 라벨</div>
+      </div>
+
+      <!-- Graphic Motifs -->
+      <div class="fade-in" style="margin-top:48px;">
+        <h3 style="font-size:1.2rem; font-weight:700; margin-bottom:20px;">그래픽 모티프 <span class="mono" style="font-size:0.8rem; color:var(--text-secondary); font-weight:400;">Graphic Motifs</span></h3>
+      </div>
+
+      <div class="concept-grid fade-in">
+        <div class="concept-card green">
+          <h3>터미널 프롬프트 <span class="tag">$_</span></h3>
+          <p>채널의 핵심 그래픽 심볼. 인트로 타이핑 애니메이션, 섹션 구분자, 로고 심볼, 썸네일 코너 장식 등 모든 에셋에 반복 등장하여 브랜드 인지도를 높인다.</p>
+        </div>
+        <div class="concept-card yellow">
+          <h3>코드 에디터 UI <span class="tag">Traffic Lights</span></h3>
+          <p>맥OS 스타일 코드 에디터 창 모티프. 상단 트래픽 라이트(<span style="color:#ff5f57;">&bull;</span> <span style="color:#febc2e;">&bull;</span> <span style="color:#28c840;">&bull;</span>)와 파일명 탭, 라인 넘버, 신택스 하이라이팅으로 구성.</p>
+        </div>
+        <div class="concept-card pink">
+          <h3>글리치/스캔라인 <span class="tag">Glitch</span></h3>
+          <p>디지털/코딩 느낌의 보조 효과. 타이틀 전환 시 0.3~0.5초 글리치, 에러 순간 이펙트. 3초 이상 지속하지 않는다.</p>
+        </div>
+        <div class="concept-card blue">
+          <h3>네온 글로우 라인 <span class="tag">Neon Glow</span></h3>
+          <p>구분선, 카드 상단 보더에 사용하는 네온 발광 효과. 그린 기본, 그라디언트 형태(transparent &rarr; accent-green &rarr; transparent), 두께 1~2px.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 5: LOGO DESIGN ========== -->
+  <section class="section" id="section5">
+    <div class="container">
+      <div class="fade-in">
+        <p class="section-label">Section 05</p>
+        <h2 class="section-title">로고 디자인 <span class="en">Logo Design Direction</span></h2>
+        <p class="section-subtitle">딸깍연구소 로고는 "딸깍(클릭)", "연구소(실험)", "코드/터미널(기술)"의 세 가지 의미를 시각적으로 전달한다.</p>
+      </div>
+
+      <!-- Logo Architecture -->
+      <div class="logo-grid fade-in fade-in-delay-1">
+        <div class="logo-card">
+          <div class="logo-type">COMBINATION MARK</div>
+          <div class="logo-preview">
+            <span style="color:var(--accent-green); font-size:2rem; font-weight:700;">$_</span>
+            <span style="font-family:var(--font-kr); font-weight:900; font-size:1.3rem; color:var(--text-primary);">딸깍연구소</span>
+            <span style="font-size:0.7rem; color:var(--text-secondary);">Click Lab</span>
+          </div>
+          <h4>콤비네이션 마크</h4>
+          <p>심볼 + 워드마크 결합. 채널의 공식 대표 로고로 가장 많이 사용</p>
+        </div>
+
+        <div class="logo-card">
+          <div class="logo-type">SYMBOL MARK</div>
+          <div class="logo-preview">
+            <span style="color:var(--accent-green); font-size:3.5rem; font-weight:700; text-shadow:0 0 20px rgba(57,211,83,0.4);">$</span>
+          </div>
+          <h4>심볼 마크</h4>
+          <p>심볼 단독 사용. 프로필, 워터마크, 앱 아이콘 등 소형 에셋용. 최소 32x32px</p>
+        </div>
+
+        <div class="logo-card">
+          <div class="logo-type">WORDMARK</div>
+          <div class="logo-preview">
+            <span style="font-family:var(--font-kr); font-weight:900; font-size:1.5rem;"><span style="color:var(--accent-green);">딸</span>깍연구소</span>
+          </div>
+          <h4>워드마크</h4>
+          <p>텍스트 전용. "딸" 또는 "$"에 네온 그린 적용으로 심볼 없이도 브랜드 인지</p>
+        </div>
+      </div>
+
+      <!-- $_ Motif -->
+      <div class="fade-in" style="margin-top:48px;">
+        <h3 style="font-size:1.2rem; font-weight:700; margin-bottom:20px;">터미널 프롬프트 $_ 모티프 <span class="mono" style="font-size:0.8rem; color:var(--text-secondary); font-weight:400;">Logo Motif</span></h3>
+      </div>
+
+      <div class="code-block fade-in">
+        <div class="code-block-header">
+          <div class="dots">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+          <span>logo_direction.md</span>
+        </div>
+        <div class="code-block-body">
+          <div style="margin-bottom:16px;">
+            <span class="code-keyword">## 권장 방향</span> <span class="code-comment">// 방향 2를 메인으로 채택</span>
+          </div>
+          <div style="margin-bottom:12px;">
+            <span class="code-function">방향 2:</span> <span class="code-string">"$_" 프롬프트 라인 자체를 로고화</span>
+          </div>
+          <div style="margin-bottom:8px; padding-left:16px;">
+            <span class="code-variable">예시:</span> <span style="color:var(--accent-green); font-size:1.1rem;">$ 딸깍연구소_</span> <span class="code-comment">// 타이핑 중인 느낌</span>
+          </div>
+          <div style="margin-bottom:16px; padding-left:16px;">
+            <span class="code-variable">장점:</span> 가장 직관적 "터미널/코딩" 느낌 + 브랜드 네임 자연 결합
+          </div>
+          <div style="margin-bottom:12px;">
+            <span class="code-function">방향 1:</span> <span class="code-string">"$" 기호의 변형 (보조)</span>
+          </div>
+          <div style="padding-left:16px;">
+            <span class="code-variable">용도:</span> 프로필, 파비콘 등 소형 에셋 독립 사용
+          </div>
+        </div>
+      </div>
+
+      <!-- Logo Color Versions -->
+      <div class="fade-in" style="margin-top:48px;">
+        <h3 style="font-size:1.2rem; font-weight:700; margin-bottom:20px;">로고 컬러 버전</h3>
+      </div>
+
+      <div class="personality-grid fade-in" style="margin-top:0;">
+        <div class="personality-item" style="text-align:center;">
+          <div style="background:#0d1117; padding:24px; border-radius:8px; margin-bottom:12px;">
+            <span style="font-family:var(--font-mono); color:var(--accent-green); font-weight:700;">$</span>
+            <span style="font-family:var(--font-kr); font-weight:900; color:#e6edf3;"> 딸깍연구소</span>
+          </div>
+          <div class="pi-title">기본 버전 (Primary)</div>
+          <div class="pi-desc">다크 배경 + 화이트 텍스트 + 네온 그린 액센트</div>
+        </div>
+        <div class="personality-item" style="text-align:center;">
+          <div style="background:#0d1117; padding:24px; border-radius:8px; margin-bottom:12px;">
+            <span style="font-family:var(--font-mono); color:#e6edf3; font-weight:700;">$</span>
+            <span style="font-family:var(--font-kr); font-weight:900; color:#e6edf3;"> 딸깍연구소</span>
+          </div>
+          <div class="pi-title">모노크롬 화이트</div>
+          <div class="pi-desc">영상 내 워터마크, 액센트 방해 시 사용</div>
+        </div>
+        <div class="personality-item" style="text-align:center;">
+          <div style="background:#e6edf3; padding:24px; border-radius:8px; margin-bottom:12px;">
+            <span style="font-family:var(--font-mono); color:#0d1117; font-weight:700;">$</span>
+            <span style="font-family:var(--font-kr); font-weight:900; color:#0d1117;"> 딸깍연구소</span>
+          </div>
+          <div class="pi-title">모노크롬 다크</div>
+          <div class="pi-desc">인쇄물, 공식 문서, 밝은 배경 환경</div>
+        </div>
+        <div class="personality-item" style="text-align:center;">
+          <div style="background:#0d1117; padding:24px; border-radius:8px; margin-bottom:12px;">
+            <span style="font-family:var(--font-mono); color:var(--accent-green); font-weight:700; text-shadow:0 0 10px rgba(57,211,83,0.6);">$</span>
+            <span style="font-family:var(--font-kr); font-weight:900; color:var(--accent-green); text-shadow:0 0 10px rgba(57,211,83,0.6);"> 딸깍연구소</span>
+          </div>
+          <div class="pi-title">네온 버전 (Neon)</div>
+          <div class="pi-desc">특별 이벤트, 강조 순간에만 제한 사용</div>
+        </div>
+      </div>
+
+      <!-- Logo Rules -->
+      <div class="fade-in" style="margin-top:48px;">
+        <h3 style="font-size:1.2rem; font-weight:700; margin-bottom:20px;">로고 사용 규칙</h3>
+      </div>
+
+      <div class="card fade-in">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+          <div>
+            <h4 style="font-size:0.88rem; margin-bottom:12px; color:var(--accent-green);">클리어 스페이스</h4>
+            <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.7;">심볼 마크 높이의 50%를 로고 상하좌우에 확보. 배경이 복잡한 이미지 위에는 반투명 박스 사용.</p>
+          </div>
+          <div>
+            <h4 style="font-size:0.88rem; margin-bottom:12px; color:var(--accent-yellow);">최소 크기</h4>
+            <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.7;">콤비네이션 마크: 최소 120px / 심볼 마크: 최소 32x32px / 워드마크: 최소 100px</p>
+          </div>
+        </div>
+        <div style="margin-top:24px; padding-top:20px; border-top:1px solid var(--border);">
+          <h4 style="font-size:0.88rem; margin-bottom:12px; color:var(--accent-pink);">금지 사항</h4>
+          <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; font-size:0.82rem; color:var(--text-secondary);">
+            <div>비율 왜곡 금지</div>
+            <div>임의 색상 금지</div>
+            <div>3D 효과 금지</div>
+            <div>45도 이상 회전 금지</div>
+            <div>최소 크기 미만 금지</div>
+            <div>장식적 반복 금지</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 6: CHANNEL ASSETS ========== -->
+  <section class="section" id="section6">
+    <div class="container">
+      <div class="fade-in">
+        <p class="section-label">Section 06</p>
+        <h2 class="section-title">채널 에셋 가이드 <span class="en">Channel Asset Guide</span></h2>
+        <p class="section-subtitle">유튜브 채널 운영에 필요한 핵심 에셋의 사양과 디자인 방향을 정의합니다.</p>
+      </div>
+
+      <!-- Profile & Banner -->
+      <div class="asset-grid fade-in fade-in-delay-1">
+        <div class="asset-card">
+          <div class="asset-card-header">
+            <div class="asset-label">PROFILE IMAGE</div>
+            <h4>프로필 이미지</h4>
+          </div>
+          <div class="asset-card-body">
+            <ul>
+              <li><strong>크기:</strong> 800x800px (유튜브 권장)</li>
+              <li><strong>배경:</strong> #0d1117 또는 #161b22</li>
+              <li><strong>중앙:</strong> '$' 심볼 마크 (네온 그린)</li>
+              <li><strong>효과:</strong> 심볼 주변 미세한 네온 글로우</li>
+              <li>40x40px에서도 인식 가능해야 함</li>
+              <li>채널명 전체 넣지 않음 (크기 작아 안 읽힘)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="asset-card">
+          <div class="asset-card-header">
+            <div class="asset-label">CHANNEL BANNER</div>
+            <h4>채널 배너</h4>
+          </div>
+          <div class="asset-card-body">
+            <ul>
+              <li><strong>크기:</strong> 2560x1440px (전체)</li>
+              <li><strong>안전 영역:</strong> 1546x423px (모바일)</li>
+              <li><strong>중앙:</strong> 콤비네이션 마크 + 슬로건</li>
+              <li><strong>배경:</strong> 다크 + 도트 그리드 패턴</li>
+              <li>좌우 확장: 터미널 코드 라인 텍스처</li>
+              <li>코드 에디터 첫 화면 느낌</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Thumbnail Templates -->
+      <div class="fade-in" style="margin-top:48px;">
+        <h3 style="font-size:1.2rem; font-weight:700; margin-bottom:20px;">썸네일 템플릿 <span class="mono" style="font-size:0.8rem; color:var(--text-secondary); font-weight:400;">1280x720px / 16:9</span></h3>
+      </div>
+
+      <div class="thumb-grid fade-in">
+        <div class="thumb-card">
+          <div class="thumb-preview">
+            <div style="display:flex; justify-content:space-between;">
+              <span style="color:var(--accent-green);">EP.01</span>
+              <span style="color:var(--accent-green);">$</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:16px; flex:1; justify-content:center;">
+              <div style="width:50px; height:80px; border:1px solid var(--accent-green); border-radius:4px; display:flex; align-items:center; justify-content:center; font-size:0.5rem;">APP</div>
+              <div>
+                <div style="font-family:var(--font-kr); font-weight:900; font-size:0.82rem; color:var(--text-primary);">메인 카피<br><span style="color:var(--accent-green);">핵심단어</span> 강조</div>
+              </div>
+            </div>
+            <div style="color:var(--accent-green);">$ build success_</div>
+          </div>
+          <div class="thumb-info">
+            <h4>A. 앱 결과물 쇼케이스</h4>
+            <p>가장 자주 사용하는 기본 템플릿. 완성된 앱 스크린샷 + 텍스트 카피</p>
+          </div>
+        </div>
+
+        <div class="thumb-card">
+          <div class="thumb-preview">
+            <div></div>
+            <div style="display:flex; align-items:center; gap:16px; flex:1; justify-content:center;">
+              <div style="font-family:var(--font-kr); font-weight:900; font-size:0.82rem; color:var(--text-primary);">"이걸 진짜<br>앱으로 만듦"</div>
+              <div style="width:50px; height:60px; border:1px solid var(--accent-yellow); border-radius:4px; display:flex; align-items:center; justify-content:center; font-size:0.45rem; color:var(--accent-yellow);">JAY</div>
+            </div>
+            <div style="color:var(--accent-green); text-align:center;">$ AI가 만든 실화?_</div>
+          </div>
+          <div class="thumb-info">
+            <h4>B. 리액션 + 텍스트</h4>
+            <p>크리에이터 리액션 컷 + 임팩트 텍스트. 예능 강조형</p>
+          </div>
+        </div>
+
+        <div class="thumb-card">
+          <div class="thumb-preview" style="flex-direction:row;">
+            <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; border-right:1px solid var(--accent-green); gap:4px;">
+              <span style="font-size:0.6rem; color:var(--accent-pink);">BEFORE</span>
+              <span style="font-family:var(--font-kr); font-size:0.65rem;">"점심 뭐 먹지"</span>
+            </div>
+            <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px;">
+              <span style="font-size:0.6rem; color:var(--accent-green);">AFTER</span>
+              <span style="font-family:var(--font-mono); font-size:0.6rem; color:var(--accent-green);">$ 해결완료_</span>
+            </div>
+          </div>
+          <div class="thumb-info">
+            <h4>C. 비포/애프터</h4>
+            <p>하찮은 문제 vs 완성된 앱의 대비. 중앙 네온 그린 분할선</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- In-Video Graphics -->
+      <div class="fade-in" style="margin-top:48px;">
+        <h3 style="font-size:1.2rem; font-weight:700; margin-bottom:20px;">영상 내 그래픽 <span class="mono" style="font-size:0.8rem; color:var(--text-secondary); font-weight:400;">In-Video Graphics</span></h3>
+      </div>
+
+      <div class="concept-grid fade-in">
+        <div class="concept-card green">
+          <h3>타이틀 시퀀스 <span class="tag">3~5sec</span></h3>
+          <p>다크 배경 + 글리치(0.3초) &rarr; 커서 깜빡임 + "딸깍연구소" 타이핑(2초) &rarr; 로고 완성 + 네온 글로우(1초) + 징글 사운드</p>
+        </div>
+        <div class="concept-card yellow">
+          <h3>인트로 터미널 <span class="tag">Terminal Screen</span></h3>
+          <p>풀스크린 터미널 에뮬레이터. <span class="mono" style="color:var(--accent-green);">$ 오늘의 하찮은 문제:</span> &rarr; 문제 텍스트 타이핑 &rarr; 로딩바 &rarr; <span class="mono" style="color:var(--accent-green);">$ 딸깍_</span></p>
+        </div>
+        <div class="concept-card pink">
+          <h3>자막 스타일 <span class="tag">3 Types</span></h3>
+          <p><strong>기본:</strong> Noto Sans KR Bold + 반투명 블랙 배경 / <strong>강조:</strong> Black 900 + 그린 반투명 배경 / <strong>코드:</strong> JetBrains Mono + "$" 프롬프트</p>
+        </div>
+        <div class="concept-card blue">
+          <h3>쓸모 판정 그래픽 <span class="tag">Score Card</span></h3>
+          <p>코드 에디터 프레임 안에 <span class="mono" style="font-size:0.82rem;">const 쓸모_판정 = { score: "&#9733;&#9733;&#9733;&#9734;&#9734;", verdict: "쓸데없지만 재밌음" }</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 7: POSITIONING & DIFFERENTIATION ========== -->
+  <section class="section" id="section7">
+    <div class="container">
+      <div class="fade-in">
+        <p class="section-label">Section 07</p>
+        <h2 class="section-title">포지셔닝 & 차별화 <span class="en">Positioning & Differentiation</span></h2>
+        <p class="section-subtitle">딸깍연구소의 시장 내 위치와 경쟁 채널 대비 차별화 전략을 정의합니다.</p>
+      </div>
+
+      <!-- Positioning Map -->
+      <div class="fade-in" style="margin-bottom:24px;">
+        <h3 style="font-size:1.2rem; font-weight:700; margin-bottom:8px;">포지셔닝 맵</h3>
+        <p style="font-size:0.85rem; color:var(--text-secondary);">X축: 교육적 &harr; 예능적 / Y축: 하드코어 기술 &harr; 일반인 접근성</p>
+      </div>
+
+      <div class="positioning-map fade-in">
+        <div class="map-axes">
+          <div class="map-axis-x"></div>
+          <div class="map-axis-y"></div>
+          <div class="map-label top">하드코어 기술</div>
+          <div class="map-label bottom">일반인 접근성</div>
+          <div class="map-label left">교육적</div>
+          <div class="map-label right">예능적</div>
+
+          <!-- Channel Points -->
+          <div class="map-point" style="top:20%; left:35%;">
+            <div class="point-dot"></div>
+            <div class="point-label">코딩애플</div>
+          </div>
+          <div class="map-point" style="top:30%; left:42%;">
+            <div class="point-dot"></div>
+            <div class="point-label">노마드코더</div>
+          </div>
+          <div class="map-point" style="top:38%; left:60%;">
+            <div class="point-dot"></div>
+            <div class="point-label">긱블</div>
+          </div>
+          <div class="map-point" style="top:70%; left:55%;">
+            <div class="point-dot"></div>
+            <div class="point-label">침착맨</div>
+          </div>
+          <div class="map-point" style="top:72%; left:72%;">
+            <div class="point-dot"></div>
+            <div class="point-label">피식대학</div>
+          </div>
+
+          <!-- Highlight: Click Lab -->
+          <div class="map-point highlight" style="top:62%; left:68%;">
+            <div class="point-dot"></div>
+            <div class="point-label">딸깍연구소</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Blue Ocean -->
+      <div class="fade-in">
+        <div class="card" style="border-color:var(--accent-green); box-shadow:0 0 30px var(--glow-green);">
+          <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:16px; color:var(--accent-green);">블루오션 영역: 바이브코딩 &times; 예능</h3>
+          <p style="font-size:0.92rem; color:var(--text-secondary); line-height:1.8; margin-bottom:16px;">
+            개발 채널(코딩애플, 노마드코더)의 <strong style="color:var(--text-primary);">기술 요소</strong>와 예능 채널(침착맨, 피식대학)의 <strong style="color:var(--text-primary);">엔터테인먼트 요소</strong>가 교차하는 빈 공간. 딸깍연구소는 이 블루오션에 위치한다.
+          </p>
+          <div style="display:grid; grid-template-columns:1fr auto 1fr; gap:16px; align-items:center; text-align:center;">
+            <div style="background:var(--bg-secondary); padding:16px; border-radius:8px; border:1px solid var(--border);">
+              <div style="font-size:0.75rem; color:var(--accent-yellow); font-family:var(--font-mono); margin-bottom:8px;">개발 채널</div>
+              <div style="font-size:0.82rem; color:var(--text-secondary);">진지한 톤<br>교육 중심<br>전문가 타겟</div>
+            </div>
+            <div style="font-family:var(--font-mono); color:var(--accent-green); font-size:1.5rem;">+</div>
+            <div style="background:var(--bg-secondary); padding:16px; border-radius:8px; border:1px solid var(--border);">
+              <div style="font-size:0.75rem; color:var(--accent-pink); font-family:var(--font-mono); margin-bottom:8px;">예능 채널</div>
+              <div style="font-size:0.82rem; color:var(--text-secondary);">코딩 없음<br>유머 중심<br>넓은 타겟</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Differentiation -->
+      <div class="fade-in" style="margin-top:48px;">
+        <h3 style="font-size:1.2rem; font-weight:700; margin-bottom:20px;">차별화 포인트 5가지</h3>
+      </div>
+
+      <div class="concept-grid fade-in">
+        <div class="concept-card green">
+          <h3>바이브코딩 특화 <span class="tag">01</span></h3>
+          <p>AI에게 자연어로 시키는 코딩만 다룸. 전통적 코딩 교육이 아님. <strong>코딩애플/노마드코더와 정반대 접근.</strong></p>
+        </div>
+        <div class="concept-card yellow">
+          <h3>예능 포맷 <span class="tag">02</span></h3>
+          <p>5단계 서사 구조 + 리액션 + 시행착오의 <strong>예능적 편집</strong>. 개발 채널의 튜토리얼/강의 포맷과 차별화.</p>
+        </div>
+        <div class="concept-card pink">
+          <h3>매회 실물 결과물 <span class="tag">03</span></h3>
+          <p>매 에피소드 <strong>실제로 작동하는 앱이 완성</strong>됨. QR코드 공유. 토크/상황극만 있는 예능 채널과 차별화.</p>
+        </div>
+        <div class="concept-card blue">
+          <h3>의도적 무용함 <span class="tag">04</span></h3>
+          <p>"쓸데없는 앱"이라는 컨셉이 <strong>역설적으로 기술 접근성을 증명</strong>. 긱블의 "대단한 결과물" 지향과 대비.</p>
+        </div>
+        <div class="concept-card green">
+          <h3>1인 대학생 시점 <span class="tag">05</span></h3>
+          <p><strong>비전문가 시점</strong>으로 AI 시대의 기술 민주화를 체현. 현직 개발자/전문가 중심의 타 채널과 차별화.</p>
+        </div>
+      </div>
+
+      <!-- Competitive Strategy -->
+      <div class="fade-in" style="margin-top:48px;">
+        <h3 style="font-size:1.2rem; font-weight:700; margin-bottom:20px;">경쟁 우위 유지 전략</h3>
+      </div>
+
+      <div class="code-block fade-in">
+        <div class="code-block-header">
+          <div class="dots">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+          <span>competitive_strategy.config</span>
+        </div>
+        <div class="code-block-body">
+          <div style="margin-bottom:8px;"><span class="code-keyword">const</span> <span class="code-variable">strategy</span> = {</div>
+          <div style="padding-left:20px; margin-bottom:6px;"><span class="code-function">frame</span>: <span class="code-string">"'하찮은 앱' 프레임 고수 — 유용한 앱으로 전환하지 않는다"</span>,</div>
+          <div style="padding-left:20px; margin-bottom:6px;"><span class="code-function">perspective</span>: <span class="code-string">"비전문가 시점 유지 — 실력이 늘어도 '코딩 모르는 사람' 시점"</span>,</div>
+          <div style="padding-left:20px; margin-bottom:6px;"><span class="code-function">format</span>: <span class="code-string">"5단계 구조 일관성 — 포맷의 반복이 브랜드 인지도"</span>,</div>
+          <div style="padding-left:20px; margin-bottom:6px;"><span class="code-function">community</span>: <span class="code-string">"시청자 참여 확대 — '하찮은 문제 제보'로 커뮤니티 구축"</span>,</div>
+          <div style="padding-left:20px; margin-bottom:6px;"><span class="code-function">visual</span>: <span class="code-string">"비주얼 일관성 — 이 가이드라인에 따른 통일된 시스템"</span></div>
+          <div>};</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 8: ASSET CHECKLIST ========== -->
+  <section class="section" id="section8">
+    <div class="container">
+      <div class="fade-in">
+        <p class="section-label">Section 08</p>
+        <h2 class="section-title">에셋 체크리스트 <span class="en">Brand Asset Checklist</span></h2>
+        <p class="section-subtitle">로고 제작 및 채널 런칭 전 확인해야 할 필수 에셋 목록입니다.</p>
+      </div>
+
+      <div class="diff-grid">
+        <div class="fade-in fade-in-delay-1">
+          <h3 style="font-size:1rem; font-weight:700; margin-bottom:16px;">
+            <span class="mono" style="color:var(--accent-green); font-size:0.75rem; letter-spacing:2px;">MUST HAVE</span>
+            <br>필수 에셋
+          </h3>
+          <ul class="checklist">
+            <li><span class="check-box">&#10003;</span>로고 - 콤비네이션 마크 (가로형)</li>
+            <li><span class="check-box">&#10003;</span>로고 - 콤비네이션 마크 (세로형)</li>
+            <li><span class="check-box">&#10003;</span>로고 - 심볼 마크 (프로필/파비콘)</li>
+            <li><span class="check-box">&#10003;</span>로고 - 워드마크 (텍스트 전용)</li>
+            <li><span class="check-box">&#10003;</span>프로필 이미지 (800x800px)</li>
+            <li><span class="check-box">&#10003;</span>채널 배너 (2560x1440px)</li>
+            <li><span class="check-box">&#10003;</span>썸네일 템플릿 A (앱 쇼케이스)</li>
+            <li><span class="check-box">&#10003;</span>썸네일 템플릿 B (리액션 + 텍스트)</li>
+            <li><span class="check-box">&#10003;</span>타이틀 시퀀스 모션 (3~5초)</li>
+            <li><span class="check-box">&#10003;</span>인트로 터미널 화면 템플릿</li>
+            <li><span class="check-box">&#10003;</span>자막 스타일 프리셋 (기본/강조/코드)</li>
+            <li><span class="check-box">&#10003;</span>엔드카드 템플릿</li>
+            <li><span class="check-box">&#10003;</span>시그니처 징글/사운드 로고</li>
+          </ul>
+        </div>
+
+        <div class="fade-in fade-in-delay-2">
+          <h3 style="font-size:1rem; font-weight:700; margin-bottom:16px;">
+            <span class="mono" style="color:var(--accent-yellow); font-size:0.75rem; letter-spacing:2px;">NICE TO HAVE</span>
+            <br>권장 에셋
+          </h3>
+          <ul class="checklist">
+            <li><span class="check-box">&#10003;</span>썸네일 템플릿 C (비포/애프터)</li>
+            <li><span class="check-box">&#10003;</span>하단 3분의 1 (Lower Third) 템플릿</li>
+            <li><span class="check-box">&#10003;</span>쓸모 판정 그래픽 템플릿</li>
+            <li><span class="check-box">&#10003;</span>쇼츠용 세로 타이틀 카드 (1080x1920)</li>
+            <li><span class="check-box">&#10003;</span>커뮤니티 탭 이미지 템플릿</li>
+            <li><span class="check-box">&#10003;</span>워터마크 (영상 우하단)</li>
+            <li><span class="check-box">&#10003;</span>트랜지션 프리셋 (글리치/와이프)</li>
+            <li><span class="check-box">&#10003;</span>소셜 미디어 프로필/배너</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="footer" id="footer">
+  <div class="footer-content">
+    <div class="doc-info fade-in">
+      <h3>// DOCUMENT INFO</h3>
+      <div class="code-block" style="margin-top:16px;">
+        <div class="code-block-header">
+          <div class="dots">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+          <span>document_meta.json</span>
+        </div>
+        <div class="code-block-body">
+          <div><span class="code-variable">document</span>: <span class="code-string">"딸깍연구소 브랜드 아이덴티티 가이드라인 v1.0"</span></div>
+          <div><span class="code-variable">channel</span>: <span class="code-string">"딸깍연구소 (Click Lab)"</span></div>
+          <div><span class="code-variable">author</span>: <span class="code-string">"홍재영 (JAY)"</span></div>
+          <div><span class="code-variable">date</span>: <span class="code-string">"2026년 3월"</span></div>
+          <div><span class="code-variable">purpose</span>: <span class="code-string">"로고 제작, 채널 에셋 디자인, 콘텐츠 제작의 기준 문서"</span></div>
+          <div><span class="code-variable">status</span>: <span class="code-string">"v1.0 — 로고 제작 및 채널 런칭 준비용 초판"</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom fade-in">
+      <div class="footer-info">
+        영상제작워크샵(ft. 1인미디어종합설계) &mdash; 2026년 1학기
+      </div>
+      <div class="footer-copy">
+        &copy; 2026 딸깍연구소. 영상제작워크샵 과제용 브랜딩 기획안
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ==================== JAVASCRIPT ==================== -->
+<script>
+(function() {
+  'use strict';
+
+  // ========== PARTICLE SYSTEM ==========
+  const canvas = document.getElementById('particles-canvas');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  let animationId;
+  let width, height;
+
+  function resizeCanvas() {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+  }
+
+  function createParticle() {
+    return {
+      x: Math.random() * width,
+      y: Math.random() * height,
+      size: Math.random() * 2 + 0.5,
+      speedX: (Math.random() - 0.5) * 0.3,
+      speedY: (Math.random() - 0.5) * 0.3,
+      opacity: Math.random() * 0.5 + 0.1,
+      color: Math.random() > 0.7 ? '#39d353' : (Math.random() > 0.5 ? '#f0c000' : '#30363d')
+    };
+  }
+
+  function initParticles() {
+    const count = Math.min(Math.floor(width * height / 15000), 80);
+    particles = [];
+    for (let i = 0; i < count; i++) {
+      particles.push(createParticle());
+    }
+  }
+
+  function drawParticles() {
+    ctx.clearRect(0, 0, width, height);
+    particles.forEach(function(p) {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.globalAlpha = p.opacity;
+      ctx.fill();
+      p.x += p.speedX;
+      p.y += p.speedY;
+      if (p.x < 0 || p.x > width) p.speedX *= -1;
+      if (p.y < 0 || p.y > height) p.speedY *= -1;
+    });
+    ctx.globalAlpha = 1;
+    animationId = requestAnimationFrame(drawParticles);
+  }
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  resizeCanvas();
+  initParticles();
+  if (!prefersReducedMotion) {
+    drawParticles();
+  }
+
+  window.addEventListener('resize', function() {
+    resizeCanvas();
+    initParticles();
+  });
+
+  // ========== TYPING ANIMATION ==========
+  const typingEl = document.getElementById('typingText');
+  const typingPhrases = [
+    '$ init brand-identity --version=1.0',
+    '$ 기술의 민주화를 유머로 증명한다',
+    '$ vibe-coding --mode=branding',
+    '$ build brand-guidelines',
+    '$ deploy --target=click-lab'
+  ];
+  let phraseIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+
+  function typeEffect() {
+    const current = typingPhrases[phraseIndex];
+
+    if (!isDeleting) {
+      typingEl.textContent = current.substring(0, charIndex + 1);
+      charIndex++;
+      if (charIndex === current.length) {
+        isDeleting = true;
+        setTimeout(typeEffect, 2000);
+        return;
+      }
+      setTimeout(typeEffect, 50 + Math.random() * 50);
+    } else {
+      typingEl.textContent = current.substring(0, charIndex - 1);
+      charIndex--;
+      if (charIndex === 0) {
+        isDeleting = false;
+        phraseIndex = (phraseIndex + 1) % typingPhrases.length;
+        setTimeout(typeEffect, 500);
+        return;
+      }
+      setTimeout(typeEffect, 30);
+    }
+  }
+
+  if (!prefersReducedMotion) {
+    setTimeout(typeEffect, 1500);
+  } else {
+    typingEl.textContent = typingPhrases[0];
+  }
+
+  // ========== INTERSECTION OBSERVER ==========
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { root: null, rootMargin: '0px 0px -80px 0px', threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(function(el) {
+    observer.observe(el);
+  });
+
+  // ========== NAVIGATION ACTIVE STATE ==========
+  const sections = document.querySelectorAll('.section, .header-section');
+  const sideNavLinks = document.querySelectorAll('.side-nav a');
+  const topNavLinks = document.querySelectorAll('.top-nav a');
+
+  const navObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        sideNavLinks.forEach(function(link) {
+          link.classList.toggle('active', link.getAttribute('data-section') === id || link.getAttribute('href') === '#' + id);
+        });
+        topNavLinks.forEach(function(link) {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { root: null, rootMargin: '-30% 0px -70% 0px', threshold: 0 });
+
+  sections.forEach(function(section) {
+    navObserver.observe(section);
+  });
+
+  // ========== SMOOTH SCROLL ==========
+  document.querySelectorAll('a[href^="#"]').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      var targetId = this.getAttribute('href').substring(1);
+      var target = document.getElementById(targetId);
+      if (target) {
+        var offset = window.innerWidth <= 1024 ? 56 : 0;
+        var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+      }
+    });
+  });
+
+})();
+</script>
+
+</body>
+</html>
